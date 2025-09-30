@@ -4,6 +4,7 @@
 #include <source_location>
 #include <format>
 #include <memory>
+#include <utility>
 
 #include "bakkesmod/wrappers/cvarmanagerwrapper.h"
 
@@ -13,16 +14,17 @@ constexpr bool DEBUG_LOG = false;
 
 struct FormatString
 {
-	std::string_view str;
-	std::source_location loc{};
+        std::string storage{};
+        std::string_view str;
+        std::source_location loc{};
 
-	FormatString(const char* str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
-	{
-	}
+        FormatString(const char* str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
+        {
+        }
 
-	FormatString(const std::string&& str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
-	{
-	}
+        FormatString(std::string str, const std::source_location& loc = std::source_location::current()) : storage(std::move(str)), str(storage), loc(loc)
+        {
+        }
 
 	[[nodiscard]] std::string GetLocation() const
 	{
@@ -32,16 +34,17 @@ struct FormatString
 
 struct FormatWstring
 {
-	std::wstring_view str;
-	std::source_location loc{};
+        std::wstring storage{};
+        std::wstring_view str;
+        std::source_location loc{};
 
-	FormatWstring(const wchar_t* str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
-	{
-	}
+        FormatWstring(const wchar_t* str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
+        {
+        }
 
-	FormatWstring(const std::wstring&& str, const std::source_location& loc = std::source_location::current()) : str(str), loc(loc)
-	{
-	}
+        FormatWstring(std::wstring str, const std::source_location& loc = std::source_location::current()) : storage(std::move(str)), str(storage), loc(loc)
+        {
+        }
 
 	[[nodiscard]] std::wstring GetLocation() const
 	{
