@@ -6,7 +6,6 @@
 #include "bakkesmod/wrappers/GameEvent/GameEventWrapper.h"
 #include "bakkesmod/wrappers/VehicleWrapper.h"
 #include "bakkesmod/wrappers/ServerWrapper.h"
-#include "bakkesmod/wrappers/Structs.h"
 
 #include <algorithm>
 #include <cmath>
