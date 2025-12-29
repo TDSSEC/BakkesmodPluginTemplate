@@ -4,8 +4,9 @@
 #include "bakkesmod/plugin/bakkesmodplugin.h"
 #include "bakkesmod/wrappers/CanvasWrapper.h"
 #include "bakkesmod/wrappers/GameWrapper.h"
-#include "bakkesmod/wrappers/Structs.h"
 #include "bakkesmod/wrappers/cvarwrapper.h"
+
+#include "BakkesModStructs.h"
 
 #include "version.h"
 
