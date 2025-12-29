@@ -2,7 +2,6 @@
 
 #include "GuiBase.h"
 #include "bakkesmod/plugin/bakkesmodplugin.h"
-#include "bakkesmod/wrappers/CarWrapper.h"
 #include "bakkesmod/wrappers/CanvasWrapper.h"
 #include "bakkesmod/wrappers/ControllerInput.h"
 #include "bakkesmod/wrappers/GameWrapper.h"
@@ -11,6 +10,8 @@
 #include "version.h"
 
 constexpr auto plugin_version = stringify(VERSION_MAJOR) "." stringify(VERSION_MINOR) "." stringify(VERSION_PATCH) "." stringify(VERSION_BUILD);
+
+class CarWrapper;
 
 class AirRollTrainer final : public BakkesMod::Plugin::BakkesModPlugin
 {
