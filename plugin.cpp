@@ -3,7 +3,6 @@
 
 #include "bakkesmod/wrappers/BallWrapper.h"
 #include "bakkesmod/wrappers/CanvasWrapper.h"
-#include "bakkesmod/wrappers/ControllerInput.h"
 #include "bakkesmod/wrappers/GameEvent/GameEventWrapper.h"
 #include "bakkesmod/wrappers/VehicleWrapper.h"
 #include "bakkesmod/wrappers/ServerWrapper.h"
