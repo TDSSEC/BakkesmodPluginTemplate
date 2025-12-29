@@ -11,9 +11,8 @@
 #include <algorithm>
 #include <cmath>
 #include <functional>
+#include <format>
 #include <string>
-
-#include <fmt/format.h>
 
 BAKKESMOD_PLUGIN(AirRollTrainer, "Directional air roll trainer", plugin_version, PLUGINTYPE_FREEPLAY | PLUGINTYPE_CUSTOM_TRAINING)
 
@@ -62,7 +61,7 @@ void AirRollTrainer::RegisterCVars()
 
         slowdownCvar_ = cvarManager->registerCvar(
                 "art_slowdown_pct",
-                fmt::format("{:.0f}", kDefaultSlowdownPercent),
+                std::format("{:.0f}", kDefaultSlowdownPercent),
                 "Slowdown percentage applied to the game speed",
                 true,
                 true,
