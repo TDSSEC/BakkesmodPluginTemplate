@@ -4,9 +4,9 @@
 #include <source_location>
 #include <memory>
 #include <utility>
+#include <format>
 
 #include "bakkesmod/wrappers/cvarmanagerwrapper.h"
-#include <fmt/format.h>
 
 extern std::shared_ptr<CVarManagerWrapper> _globalCvarManager;
 constexpr bool DEBUG_LOG = false;
@@ -28,7 +28,7 @@ struct FormatString
 
 	[[nodiscard]] std::string GetLocation() const
 	{
-		return fmt::format("[{} ({}:{})]", loc.function_name(), loc.file_name(), loc.line());
+		return std::format("[{} ({}:{})]", loc.function_name(), loc.file_name(), loc.line());
 	}
 };
 
@@ -48,7 +48,7 @@ struct FormatWstring
 
 	[[nodiscard]] std::wstring GetLocation() const
 	{
-		auto basic_string = fmt::format("[{} ({}:{})]", loc.function_name(), loc.file_name(), loc.line());
+		auto basic_string = std::format("[{} ({}:{})]", loc.function_name(), loc.file_name(), loc.line());
 		return std::wstring(basic_string.begin(), basic_string.end());
 	}
 };
@@ -57,13 +57,13 @@ struct FormatWstring
 template <typename... Args>
 void LOG(std::string_view format_str, Args&&... args)
 {
-	_globalCvarManager->log(fmt::vformat(format_str, fmt::make_format_args(args...)));
+	_globalCvarManager->log(std::vformat(format_str, std::make_format_args(args...)));
 }
 
 template <typename... Args>
 void LOG(std::wstring_view format_str, Args&&... args)
 {
-	_globalCvarManager->log(fmt::vformat(format_str, fmt::make_wformat_args(args...)));
+	_globalCvarManager->log(std::vformat(format_str, std::make_wformat_args(args...)));
 }
 
 
@@ -72,9 +72,9 @@ void DEBUGLOG(const FormatString& format_str, Args&&... args)
 {
 	if constexpr (DEBUG_LOG)
 	{
-		auto text = fmt::vformat(format_str.str, fmt::make_format_args(args...));
+		auto text = std::vformat(format_str.str, std::make_format_args(args...));
 		auto location = format_str.GetLocation();
-		_globalCvarManager->log(fmt::format("{} {}", text, location));
+		_globalCvarManager->log(std::format("{} {}", text, location));
 	}
 }
 
@@ -83,8 +83,8 @@ void DEBUGLOG(const FormatWstring& format_str, Args&&... args)
 {
 	if constexpr (DEBUG_LOG)
 	{
-		auto text = fmt::vformat(format_str.str, fmt::make_wformat_args(args...));
+		auto text = std::vformat(format_str.str, std::make_wformat_args(args...));
 		auto location = format_str.GetLocation();
-		_globalCvarManager->log(fmt::format(L"{} {}", text, location));
+		_globalCvarManager->log(std::format(L"{} {}", text, location));
 	}
 }
